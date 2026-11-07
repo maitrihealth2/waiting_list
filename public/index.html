@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Affyne Labs · Mythri Companion Waiting List</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0C1A30;
+      --card-bg: rgba(255, 255, 255, 0.04);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --accent: #2563EB;
+      --accent-hover: #1D4ED8;
+      --accent-light: #60A5FA;
+      --text: #F8FAFC;
+      --text-muted: #94A3B8;
+      --text-dim: #64748B;
+      --success: #10B981;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      background-image: 
+        radial-gradient(at 20% 0%, rgba(37, 99, 235, 0.22) 0px, transparent 60%),
+        radial-gradient(at 80% 100%, rgba(16, 185, 129, 0.12) 0px, transparent 60%),
+        radial-gradient(at 50% 50%, rgba(15, 23, 42, 0.8) 0px, transparent 100%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 32px 20px 24px;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 24px;
+      margin-bottom: 40px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .brand-logo {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #3B82F6, #10B981);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 20px;
+      color: white;
+      box-shadow: 0 4px 16px rgba(37, 99, 235, 0.3);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name {
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: #FFFFFF;
+    }
+
+    .brand-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.2px;
+    }
+
+    .badge-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(37, 99, 235, 0.12);
+      color: #93C5FD;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 600;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      background-color: #3B82F6;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #3B82F6;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      margin-top: 10px;
+      margin-bottom: 44px;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #60A5FA;
+      margin-bottom: 14px;
+      background: rgba(37, 99, 235, 0.1);
+      padding: 4px 12px;
+      border-radius: 6px;
+      border: 1px solid rgba(59, 130, 246, 0.2);
+    }
+
+    .hero h1 {
+      font-size: 40px;
+      font-weight: 800;
+      letter-spacing: -1.2px;
+      line-height: 1.15;
+      margin-bottom: 18px;
+      color: #FFFFFF;
+    }
+
+    @media (min-width: 640px) {
+      .hero h1 {
+        font-size: 48px;
+      }
+    }
+
+    .hero h1 span.highlight {
+      background: linear-gradient(135deg, #60A5FA 0%, #34D399 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-style: italic;
+    }
+
+    .hero-desc {
+      color: #CBD5E1;
+      font-size: 16px;
+      line-height: 1.65;
+      max-width: 640px;
+      margin: 0 auto 28px;
+    }
+
+    /* Live Queue Pill */
+    .queue-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 8px 18px;
+      border-radius: 9999px;
+      font-size: 13px;
+      backdrop-filter: blur(8px);
+      margin-bottom: 36px;
+    }
+
+    .queue-pill strong {
+      color: #60A5FA;
+    }
+
+    /* Input Pill Form */
+    .form-wrapper {
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .pill-form {
+      position: relative;
+      display: flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 9999px;
+      padding: 6px 6px 6px 20px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.06);
+      transition: all 0.3s ease;
+    }
+
+    .pill-form:focus-within {
+      border-color: #3B82F6;
+      box-shadow: 0 12px 35px -5px rgba(37, 99, 235, 0.35), 0 0 0 2px rgba(59, 130, 246, 0.3);
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .pill-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #FFFFFF;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .pill-input::placeholder {
+      color: #94A3B8;
+      font-weight: 400;
+    }
+
+    .pill-button {
+      background: linear-gradient(135deg, #2563EB, #1D4ED8);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 9999px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
+    }
+
+    .pill-button:hover {
+      background: linear-gradient(135deg, #1D4ED8, #1E40AF);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.5);
+    }
+
+    .pill-button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Auto-detect name note */
+    .detected-note {
+      font-size: 12px;
+      color: #93C5FD;
+      margin-top: 10px;
+      display: none;
+      transition: opacity 0.2s ease;
+    }
+
+    /* Success Card */
+    .success-card {
+      display: none;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.12), rgba(37, 99, 235, 0.1));
+      border: 1px solid rgba(52, 211, 153, 0.35);
+      border-radius: 16px;
+      padding: 24px;
+      text-align: left;
+      margin-top: 16px;
+      backdrop-filter: blur(12px);
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .success-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #34D399;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .success-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 6px;
+    }
+
+    .success-desc {
+      font-size: 14px;
+      color: #CBD5E1;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    .referral-box {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px dashed rgba(52, 211, 153, 0.4);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 12px;
+      color: #A7F3D0;
+    }
+
+    .referral-link {
+      font-family: monospace;
+      font-size: 13px;
+      color: #FFFFFF;
+      font-weight: 600;
+      word-break: break-all;
+      margin-top: 4px;
+    }
+
+    .error-card {
+      display: none;
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      border-radius: 12px;
+      padding: 14px 18px;
+      color: #FCA5A5;
+      font-size: 13px;
+      margin-top: 14px;
+      text-align: left;
+    }
+
+    /* Core Pillars Grid */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      margin-top: 60px;
+    }
+
+    .pillar-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px;
+      text-align: left;
+      backdrop-filter: blur(8px);
+      transition: all 0.25s ease;
+    }
+
+    .pillar-card:hover {
+      background: rgba(255, 255, 255, 0.07);
+      border-color: rgba(59, 130, 246, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .pillar-icon {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    .pillar-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 6px;
+    }
+
+    .pillar-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 12px;
+      margin-top: 50px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <a href="/" class="brand">
+        <div class="brand-logo">A</div>
+        <div class="brand-text">
+          <span class="brand-name">Affyne Labs</span>
+          <span class="brand-sub">Cognitive Technology &amp; Neuro-Safety</span>
+        </div>
+      </a>
+      <div class="badge-live">
+        <span class="badge-dot"></span>
+        <span id="header-status">Cohort Active</span>
+      </div>
+    </header>
+
+    <!-- Hero Narrative -->
+    <main class="hero">
+      <span class="hero-tag">Product Horizon &bull; Mythri Companion</span>
+      <h1>Technology that <span class="highlight">understands</span> the human mind.</h1>
+      <p class="hero-desc">
+        Mythri is designed as a calm, supportive companion navigating loneliness and everyday emotional anxiety—grounded in deterministic neuro-safety and zero-egress data privacy.
+      </p>
+
+      <!-- Live Queue Badge -->
+      <div class="queue-pill">
+        <span>Queue Status:</span>
+        <strong id="queue-count">Next Available Cohort: #1016</strong>
+        <span style="color: rgba(255,255,255,0.2);">|</span>
+        <span id="queue-subscribers" style="color: #94A3B8;">Reserve your spot</span>
+      </div>
+
+      <!-- Single-Step Pill Registration Form -->
+      <div class="form-wrapper">
+        <form id="waitlist-form" class="pill-form">
+          <input 
+            type="email" 
+            id="email-input" 
+            class="pill-input" 
+            placeholder="Enter your email address..." 
+            required 
+            autocomplete="email"
+            maxlength="254"
+          >
+          <button type="submit" class="pill-button" id="submit-btn">
+            <span>Join Waitlist</span>
+            <span style="font-size: 16px;">&rarr;</span>
+          </button>
+        </form>
+
+        <div id="detected-note" class="detected-note">
+          👋 Welcome, <strong id="detected-name-text"></strong>
+        </div>
+
+        <div id="success-card" class="success-card">
+          <div class="success-badge">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            Spot Reserved
+          </div>
+          <div class="success-title" id="success-headline">You're on the Affyne Labs waiting list!</div>
+          <div class="success-desc" id="success-message">
+            We have dispatched your welcome packet and reference details directly to your email address.
+          </div>
+          <div class="referral-box">
+            <div style="font-weight: 700; color: #34D399; margin-bottom: 2px;">Share to move up the queue:</div>
+            <div class="referral-link" id="referral-link-val">https://affynelabs.com</div>
+          </div>
+        </div>
+
+        <div id="error-card" class="error-card"></div>
+      </div>
+
+      <!-- 3 Core Neuro-Tech Guarantees -->
+      <div class="pillars-grid">
+        <div class="pillar-card">
+          <div class="pillar-icon">🧠</div>
+          <div class="pillar-title">86B Synapses</div>
+          <div class="pillar-desc">Paced to soothe cognitive stress and everyday anxiety without addiction loops.</div>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-icon">🔒</div>
+          <div class="pillar-title">Zero-Egress Privacy</div>
+          <div class="pillar-desc">Client-side cryptographic isolation; strict privacy with zero data harvesting.</div>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-icon">🛡️</div>
+          <div class="pillar-title">Clinical Rigor</div>
+          <div class="pillar-desc">Developed alongside psychiatrists and neuroscientists with deterministic safety rails.</div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      &copy; 2026 Affyne Labs Inc. All rights reserved. &bull; Zero-Egress Privacy &bull; Inquiries: no-reply@auth.affynelabs.com
+    </footer>
+  </div>
+
+  <script>
+    // Live Queue Fetch
+    async function updateQueueData() {
+      try {
+        const res = await fetch('/api/waitlist/count');
+        const data = await res.json();
+        if (data.success) {
+          document.getElementById('queue-count').innerText = `Next Available Cohort: #${data.nextNumber}`;
+          document.getElementById('queue-subscribers').innerText = `${data.count} registered`;
+          document.getElementById('header-status').innerText = `Cohort #${data.nextNumber} Open`;
+        }
+      } catch (err) {
+        // Fallback gracefully
+      }
+    }
+    updateQueueData();
+
+    // Auto-detect Name while typing email
+    function extractNamePreview(email) {
+      if (!email || !email.includes('@')) return '';
+      let local = email.split('@')[0].split('+')[0];
+      let clean = local.replace(/[0-9]+/g, '');
+      if (!clean) clean = local;
+      let formatted = clean.replace(/[\._\-]+/g, ' ').replace(/([a-z])([A-Z])/g, '$1 $2');
+      if (!formatted.includes(' ')) {
+        const lower = formatted.toLowerCase();
+        if (lower.startsWith('keerthivardhan')) {
+          const rest = lower.slice('keerthivardhan'.length);
+          formatted = 'Keerthi Vardhan' + (rest ? ' ' + rest.toUpperCase() : '');
+        } else {
+          const roots = ['vardhan', 'kumar', 'reddy', 'sharma', 'singh', 'patel', 'prasad', 'chandra', 'sekhar'];
+          for (const r of roots) {
+            const idx = lower.indexOf(r);
+            if (idx > 2) {
+              formatted = formatted.slice(0, idx) + ' ' + formatted.slice(idx, idx + r.length) + (formatted.slice(idx + r.length) ? ' ' + formatted.slice(idx + r.length) : '');
+              break;
+            }
+          }
+        }
+      }
+      const words = formatted.trim().split(/\s+/).filter(Boolean);
+      return words.map(w => w.length === 1 ? w.toUpperCase() : w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(' ');
+    }
+
+    const emailInput = document.getElementById('email-input');
+    const detectedNote = document.getElementById('detected-note');
+    const detectedNameText = document.getElementById('detected-name-text');
+
+    emailInput.addEventListener('input', (e) => {
+      const email = e.target.value.trim();
+      const name = extractNamePreview(email);
+      if (name && name.length >= 2) {
+        detectedNameText.innerText = name;
+        detectedNote.style.display = 'block';
+      } else {
+        detectedNote.style.display = 'none';
+      }
+    });
+
+    // Form Submission
+    const form = document.getElementById('waitlist-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const successCard = document.getElementById('success-card');
+    const errorCard = document.getElementById('error-card');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = emailInput.value.trim();
+      if (!email) return;
+
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span>Securing Spot...</span>';
+      errorCard.style.display = 'none';
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const referredBy = urlParams.get('ref');
+
+      try {
+        const res = await fetch('/api/waitlist', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, referredBy, source: 'website-mythri-waitlist' })
+        });
+
+        const data = await res.json();
+
+        if (res.status === 201) {
+          form.style.display = 'none';
+          detectedNote.style.display = 'none';
+          successCard.style.display = 'block';
+          document.getElementById('success-headline').innerText = `You're #${data.waitlistNumber} on the Waiting List!`;
+          document.getElementById('success-message').innerHTML = `Spot sequence <strong>#${data.waitlistNumber}</strong> (Reference: <strong>${data.referenceNumber}</strong>) is confirmed. Your welcome email was sent to <strong>${email}</strong>.`;
+          document.getElementById('referral-link-val').innerText = data.referralUrl || `${window.location.origin}?ref=${data.referenceNumber}`;
+          updateQueueData();
+        } else if (res.status === 409) {
+          form.style.display = 'none';
+          detectedNote.style.display = 'none';
+          successCard.style.display = 'block';
+          document.getElementById('success-headline').innerText = `Welcome Back! You're already reserved as #${data.waitlistNumber || 'Active'}`;
+          document.getElementById('success-message').innerHTML = `Your email <strong>${email}</strong> is already registered. We have re-sent your confirmation details to your inbox.`;
+          document.getElementById('referral-link-val').innerText = data.referralUrl || `${window.location.origin}?ref=${data.referenceNumber || 'WL-01010'}`;
+        } else {
+          errorCard.innerText = data.error || 'Unable to join waitlist. Please check your email and try again.';
+          errorCard.style.display = 'block';
+        }
+      } catch (err) {
+        errorCard.innerText = 'Network error contacting Affyne Labs server.';
+        errorCard.style.display = 'block';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<span>Join Waitlist</span><span style="font-size: 16px;">&rarr;</span>';
+      }
+    });
+  </script>
+</body>
+</html>

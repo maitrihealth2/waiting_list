@@ -1,0 +1,18 @@
+Affyne Labs
+
+Hi {{name}}, you're on the list!
+
+Thank you for joining the Affyne Labs waiting list. We've reserved your spot and will keep you updated at {{email}} as soon as early access opens.
+
+Reference number: {{referenceNumber}}
+Date joined: {{date}}
+
+Move Up The Waiting List:
+Share your personal invite link with friends and colleagues to jump ahead:
+{{referralUrl}}
+
+Please keep this reference number handy for your records.
+
+--
+Affyne Labs
+no-reply@auth.affynelabs.com
